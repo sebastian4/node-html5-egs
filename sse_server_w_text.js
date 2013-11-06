@@ -18,7 +18,7 @@ http.createServer(function(req, res) {
   } else {
   console.log("accessed by http browser");
     res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write(fs.readFileSync(__dirname + '/sse_client.html'));
+    res.write(fs.readFileSync(__dirname + '/sse_client_w_text.html'));
     res.end();
   }
 }).listen(PORT);

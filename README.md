@@ -6,4 +6,4 @@ node html5 examples for a presentation
 description
 -----------
 
-need: eclipe, nodejs, eclipsegit, nodeclipse, npm
+need: eclipse, nodejs, eclipsegit, nodeclipse, npm
