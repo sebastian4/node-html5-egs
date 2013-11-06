@@ -41,6 +41,7 @@ function sendSSE(req, res) {
 }
 
 function constructSSE(res, id, data) {
+	//TODO not done yet
   var newJson = { "time" : data, "quote" : getQuoteOfTheDay() };
   var newData = JSON.stringify(newJson);
   console.log("new pushed data: "+newData);
