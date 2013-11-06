@@ -21,7 +21,9 @@ if (typeof(EventSource)!=="undefined")
 	source.onmessage=function(event)
     {
 		console.log("got an update");
-		document.getElementById("result").innerHTML+=event.data + "<br>";
+		console.log(event.data);
+		var newJson = JSON.parse(event.data);
+		document.getElementById("result").innerHTML+=newJson.quote + "<br>";
     };
 }
 else
