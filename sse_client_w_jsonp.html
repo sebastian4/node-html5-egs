@@ -20,17 +20,19 @@ if (typeof(EventSource)!=="undefined")
 	console.log("event source created");
 	source.onmessage=function(event)
     {
-    	//TODO not done yet
 		console.log("got an update");
 		console.log(event.data);
-		var newJson = JSON.parse(event.data);
-		console.log(newJson);
-		document.getElementById("result").innerHTML+=newJson.quote + "<br>";
+		eval(event.data);
     };
 }
 else
 {
 	document.getElementById("result").innerHTML="Sorry, your browser does not support server-sent events...";
+}
+
+fcallback = function(data){
+    console.log(data.quote);
+    document.getElementById("result").innerHTML+=data.quote + "<br>";
 }
 
 </script>

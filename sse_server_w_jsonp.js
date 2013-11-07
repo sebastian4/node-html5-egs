@@ -18,7 +18,7 @@ http.createServer(function(req, res) {
   } else {
   console.log("accessed by http browser");
     res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write(fs.readFileSync(__dirname + '/sse_client_w_json.html'));
+    res.write(fs.readFileSync(__dirname + '/sse_client_w_jsonp.html'));
     res.end();
   }
 }).listen(PORT);
@@ -41,9 +41,8 @@ function sendSSE(req, res) {
 }
 
 function constructSSE(res, id, data) {
-	//TODO not done yet
   var newJson = { "time" : data, "quote" : getQuoteOfTheDay() };
-  var newData = JSON.stringify(newJson);
+  var newData = "fcallback("+JSON.stringify(newJson)+")";
   console.log("new pushed data: "+newData);
   res.write('id: ' + id + '\n');
   res.write("data: "+newData+' \n\n');
