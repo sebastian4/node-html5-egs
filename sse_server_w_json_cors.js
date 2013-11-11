@@ -17,8 +17,10 @@ http.createServer(function(req, res) {
     }
   } else {
   console.log("accessed by http browser");
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write(fs.readFileSync(__dirname + '/sse_client_w_jsonp.html'));
+    res.writeHead(200, {
+    	'Content-Type': 'text/html'
+    });
+    res.write(fs.readFileSync(__dirname + '/sse_client_w_json.html'));
     res.end();
   }
 }).listen(PORT);
@@ -26,6 +28,7 @@ http.createServer(function(req, res) {
 function sendSSE(req, res) {
   res.writeHead(200, {
     'Content-Type': 'text/event-stream',
+	"Access-Control-Allow-Origin" : "*",
     'Cache-Control': 'no-cache',
     'Connection': 'keep-alive'
   });
@@ -42,7 +45,7 @@ function sendSSE(req, res) {
 
 function constructSSE(res, id, data) {
   var newJson = { "time" : data, "quote" : getQuoteOfTheDay() };
-  var newData = "fcallback("+JSON.stringify(newJson)+")";
+  var newData = JSON.stringify(newJson);
   console.log("new pushed data: "+newData);
   res.write('id: ' + id + '\n');
   res.write("data: "+newData+' \n\n');
